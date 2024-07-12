@@ -45,29 +45,49 @@ class ComicRepository:
         return ts, hash_md5
     
     @staticmethod
-    def fetch_comics(limit: int = 20):
+    def fetch_comics(page: int = 0, limit: int = 20):
+        ts, hash_md5 = ComicRepository.generate_hash()
+        offset = page * limit
+        params = {
+            'apikey': PUBLIC_API_KEY,
+            'ts': ts,
+            'hash': hash_md5,
+            'limit': limit,
+            'offset': offset
+        }
+        url = "https://gateway.marvel.com/v1/public/comics"
+        response = requests.get(url, params=params)
+        data = response.json()
+        comics = []
+        if 'data' in data:
+            if 'results' in data['data']:
+                for comic in data['data']['results']:
+                    simplified_comic = {
+                        'id': comic['id'],
+                        'title': comic['title'],
+                        'image': comic['thumbnail']['path'] + '.' + comic['thumbnail']['extension'] if 'thumbnail' in comic else 'No image available'
+                    }
+                    comics.append(simplified_comic)
+        return comics
+
+    @staticmethod
+    def get_total_comics_and_pages(limit: int = 20):
         ts, hash_md5 = ComicRepository.generate_hash()
         params = {
             'apikey': PUBLIC_API_KEY,
             'ts': ts,
             'hash': hash_md5,
-            'limit': limit
+            'limit': 1  # We just need the total number of comics, so limit to 1
         }
         url = "https://gateway.marvel.com/v1/public/comics"
         response = requests.get(url, params=params)
         data = response.json()
-        print(data)
-        comics = []
-        if 'data' in data and 'results' in data['data']:
-            for comic in data['data']['results']:
-                simplified_comic = {
-                    'id': comic['id'],
-                    'title': comic['title'],
-                    'image': comic['thumbnail']['path'] + '.' + comic['thumbnail']['extension'] if 'thumbnail' in comic else 'No image available'
-                }
-                comics.append(simplified_comic)
-        return comics
-
+        total = 0
+        if 'data' in data:
+            total = data['data']['total']
+        total_pages = (total + limit - 1) // limit  # Calculate total pages
+        return {'total': total, 'total_pages': total_pages}
+    
     @staticmethod
     def fetch_comic_details(comic_id: int):
         ts, hash_md5 = ComicRepository.generate_hash()
