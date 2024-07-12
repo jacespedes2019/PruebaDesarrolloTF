@@ -4,6 +4,9 @@ from sqlalchemy.orm import Session
 from app.models import Usuario, Favorito
 import hashlib
 import time
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 PRIVATE_API_KEY = "d00e75ecabecfcf0504f67018c490cb528a15774"
 PUBLIC_API_KEY = "b53ca958fa0a20f0f9564adf22a61fd0"
@@ -15,6 +18,8 @@ class UserRepository:
 
     @staticmethod
     def create_user(db: Session, user: dict):
+        hashed_password = pwd_context.hash(user['password'])
+        user['password'] = hashed_password
         db_user = Usuario(**user)
         db.add(db_user)
         db.commit()

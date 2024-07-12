@@ -2,8 +2,6 @@ from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import declarative_base, relationship
 from app.database import SessionLocal, engine, Base
 
-Base = declarative_base()
-
 # Definición del modelo Usuario
 class Usuario(Base):
     __tablename__ = 'usuarios'
