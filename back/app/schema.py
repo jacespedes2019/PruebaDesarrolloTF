@@ -57,3 +57,6 @@ class UsuarioWithFavoritos(UsuarioInDBBase):
 
 class UsuariosList(BaseModel):
     items: List[UsuarioWithFavoritos]
+    
+class FavoritosList(BaseModel):
+    favoritos: List[Favorito] = []

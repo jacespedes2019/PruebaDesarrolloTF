@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy.orm import Session
-from app.schema import FavoritoCreate, Favorito
+from app.schema import FavoritoCreate, Favorito, FavoritosList
 from app.database import get_db
 from app.repositories import ComicRepository
 from app.security import get_current_user
@@ -25,3 +25,15 @@ def add_to_favorites(favorite: FavoritoCreate, db: Session = Depends(get_db), cu
     favorite_data = favorite.dict()
     favorite_data['usuario_id'] = current_user.id
     return ComicRepository.add_comic_to_favorites(db=db, favorite=favorite_data)
+
+@router.delete("/favorites/{comic_id}", response_model=dict)
+def remove_from_favorites(comic_id: int, db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    success = ComicRepository.remove_comic_from_favorites(db=db, user_id=current_user.id, comic_id=comic_id)
+    if not success:
+        raise HTTPException(status_code=404, detail="Comic not found in favorites")
+    return {"detail": "Comic removed from favorites"}
+
+@router.get("/favorites/", response_model=FavoritosList)
+def get_user_favorites(db: Session = Depends(get_db), current_user: Usuario = Depends(get_current_user)):
+    favorites = ComicRepository.get_user_favorites(db=db, user_id=current_user.id)
+    return {"favoritos": favorites}

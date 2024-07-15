@@ -130,3 +130,16 @@ class ComicRepository:
         db.commit()
         db.refresh(db_favorite)
         return db_favorite
+    
+    @staticmethod
+    def remove_comic_from_favorites(db: Session, user_id: int, comic_id: int):
+        favorite = db.query(Favorito).filter(Favorito.usuario_id == user_id, Favorito.comic_id == comic_id).first()
+        if favorite:
+            db.delete(favorite)
+            db.commit()
+            return True
+        return False
+    
+    @staticmethod
+    def get_user_favorites(db: Session, user_id: int):
+        return db.query(Favorito).filter(Favorito.usuario_id == user_id).all()
