@@ -31,8 +31,8 @@ export class ComicsComponent implements OnInit {
   addToFavorites(comic: Comic): void {
     const favorite = new Favorite(comic.id, comic.title, comic.description || '', comic.image);
     this.apiService.addToFavorites(favorite).subscribe(
-      () => console.log('Comic added to favorites'),
-      error => console.error('Error adding comic to favorites:', error)
+      () => alert('Cómic añadido con éxito'),
+      error => alert('Error, el cómic ya se encuentra añadido')
     );
   }
 }
