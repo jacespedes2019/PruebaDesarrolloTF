@@ -10,6 +10,9 @@ COPY ./requirements.txt /code/requirements.txt
 # Instalar las dependencias necesarias
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
+# Copiar el archivo .env
+COPY .env /code/.env
+
 # Copiar el resto de los archivos de tu proyecto al contenedor
 COPY app /code/app
 
