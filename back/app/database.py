@@ -1,11 +1,16 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import declarative_base, relationship, sessionmaker
+import os
+from dotenv import load_dotenv
 
 Base = declarative_base()
 engine= "Hola"
 SessionLocal="Hola"
 # Configuración de la base de datos
-DATABASE_URL = "postgresql://youruser:yourpassword@db/yourdb"
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL")
+
 try:
         engine = create_engine(DATABASE_URL)
         SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

@@ -7,9 +7,15 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 from app.models import Usuario
 from app.database import get_db
+import os
+from dotenv import load_dotenv
 
-SECRET_KEY = "1234"
-ALGORITHM = "HS256"
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
+
+SECRET_KEY = os.getenv("SECRET_KEY")
+ALGORITHM = os.getenv("ALGORITHM")
+
 ACCESS_TOKEN_EXPIRE_MINUTES = 240
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

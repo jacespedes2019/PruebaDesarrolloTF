@@ -1,4 +1,5 @@
 import requests
+import os
 from fastapi import HTTPException
 from app.security import verify_password
 from sqlalchemy.orm import Session
@@ -6,11 +7,15 @@ from app.models import Usuario, Favorito
 import hashlib
 import time
 from passlib.context import CryptContext
+from dotenv import load_dotenv
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
-PRIVATE_API_KEY = "d00e75ecabecfcf0504f67018c490cb528a15774"
-PUBLIC_API_KEY = "b53ca958fa0a20f0f9564adf22a61fd0"
+# Cargar las variables de entorno desde el archivo .env
+load_dotenv()
+
+PRIVATE_API_KEY = os.getenv("PRIVATE_API_KEY")
+PUBLIC_API_KEY = os.getenv("PUBLIC_API_KEY")
 
 class UserRepository:
     @staticmethod
