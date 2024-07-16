@@ -10,6 +10,7 @@ Base.metadata.create_all(bind=engine)
 # Initialize FastAPI app
 app = FastAPI()
 
+
 # Add CORS middleware if needed
 app.add_middleware(
     CORSMiddleware,

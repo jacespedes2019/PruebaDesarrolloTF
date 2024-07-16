@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+    <span>Comics</span>
+  </mat-toolbar>
+  
+  <div class="comics-list">
+    <mat-card *ngFor="let comic of comics">
+      <mat-card-header>
+        <mat-card-title>{{ comic.title }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image [src]="comic.image" alt="{{ comic.title }}">
+      <mat-card-actions>
+        <button mat-button (click)="addToFavorites(comic)">Añadir a Favoritos</button>
+        <button mat-button [routerLink]="['/comics', comic.id]">Ver Detalles</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  

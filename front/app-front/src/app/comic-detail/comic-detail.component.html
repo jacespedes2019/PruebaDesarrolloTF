@@ -1,0 +1,22 @@
+<mat-card *ngIf="comic">
+  <mat-card-header>
+    <mat-card-title>{{ comic.title }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image [src]="comic.image" alt="{{ comic.title }}">
+  <mat-card-content>
+    <p><strong>Descripción:</strong> {{ comic.description }}</p>
+    <p><strong>Formato:</strong> {{ comic.format }}</p>
+    <p><strong>Número de Páginas:</strong> {{ comic.pageCount }}</p>
+    <p><strong>Serie:</strong> {{ comic.series }}</p>
+    <p><strong>Fechas:</strong></p>
+    <ul>
+      <li *ngFor="let date of comic.dates">{{ date.type }}: {{ date.date | date }}</li>
+    </ul>
+    <p><strong>Precios:</strong></p>
+    <ul>
+      <li *ngFor="let price of comic.prices">{{ price.type }}: {{ price.price | currency }}</li>
+    </ul>
+    <p><strong>Creadores:</strong> {{ comic.creators?.join(', ') }}</p>
+    <p><strong>Personajes:</strong> {{ comic.characters?.join(', ') }}</p>
+  </mat-card-content>
+</mat-card>

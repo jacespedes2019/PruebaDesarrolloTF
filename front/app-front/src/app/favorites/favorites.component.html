@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <span>Favoritos</span>
+</mat-toolbar>
+
+<div class="favorites-list">
+  <mat-card *ngFor="let favorite of favorites">
+    <mat-card-header>
+      <mat-card-title>{{ favorite.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="favorite.image" alt="{{ favorite.title }}">
+    <mat-card-actions>
+      <button mat-button (click)="removeFromFavorites(favorite.comic_id)">Eliminar de Favoritos</button>
+      <button mat-button [routerLink]="['/comics', favorite.comic_id]">Ver Detalles</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
