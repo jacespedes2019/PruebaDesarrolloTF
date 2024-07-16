@@ -1,22 +1,36 @@
-<mat-card *ngIf="comic">
-  <mat-card-header>
-    <mat-card-title>{{ comic.title }}</mat-card-title>
-  </mat-card-header>
-  <img mat-card-image [src]="comic.image" alt="{{ comic.title }}">
-  <mat-card-content>
-    <p><strong>Descripción:</strong> {{ comic.description }}</p>
-    <p><strong>Formato:</strong> {{ comic.format }}</p>
-    <p><strong>Número de Páginas:</strong> {{ comic.pageCount }}</p>
-    <p><strong>Serie:</strong> {{ comic.series }}</p>
-    <p><strong>Fechas:</strong></p>
-    <ul>
-      <li *ngFor="let date of comic.dates">{{ date.type }}: {{ date.date | date }}</li>
-    </ul>
-    <p><strong>Precios:</strong></p>
-    <ul>
-      <li *ngFor="let price of comic.prices">{{ price.type }}: {{ price.price | currency }}</li>
-    </ul>
-    <p><strong>Creadores:</strong> {{ comic.creators?.join(', ') }}</p>
-    <p><strong>Personajes:</strong> {{ comic.characters?.join(', ') }}</p>
-  </mat-card-content>
-</mat-card>
+<mat-toolbar class="comics-toolbar">
+  <span>Detalles del Cómic</span>
+  <span class="spacer"></span>
+  <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  <span class="spacer"></span>
+  <button mat-button class="button" [routerLink]="['/comics']">Volver a Comics</button>
+  <button mat-button class= "button" [routerLink]="['/favorites']">Favoritos</button>
+  <button mat-button class= "button" [routerLink]="['/login']">Salir</button>
+  <img src="https://cdn.marvel.com/content/1x/034wlv_com_crd_01.jpg" alt="User Logo" class="user-logo">
+  <span>{{ userName }}</span>
+</mat-toolbar>
+
+<div class="comic-detail">
+  <mat-card *ngIf="comic">
+    <mat-card-header>
+      <mat-card-title>{{ comic.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="comic.image" alt="{{ comic.title }}">
+    <mat-card-content>
+      <p><strong>Descripción:</strong> {{ comic.description || 'No disponible' }}</p>
+      <p><strong>Formato:</strong> {{ comic.format || 'No disponible' }}</p>
+      <p><strong>Número de Páginas:</strong> {{ comic.pageCount || 'No disponible' }}</p>
+      <p><strong>Serie:</strong> {{ comic.series || 'No disponible' }}</p>
+      <p><strong>Fechas:</strong></p>
+      <ul>
+        <li *ngFor="let date of comic.dates">{{ date.type }}: {{ date.date | date }}</li>
+      </ul>
+      <p><strong>Precios:</strong></p>
+      <ul>
+        <li *ngFor="let price of comic.prices">{{ price.type }}: {{ price.price | currency }}</li>
+      </ul>
+      <p><strong>Creadores:</strong> {{ comic.creators?.join(', ') || 'No disponible' }}</p>
+      <p><strong>Personajes:</strong> {{ comic.characters?.join(', ') || 'No disponible' }}</p>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -9,7 +9,8 @@ import { Comic } from '../models/models';
   styleUrls: ['./comic-detail.component.scss']
 })
 export class ComicDetailComponent implements OnInit {
-  comic?: Comic;
+  comic: Comic | undefined;
+  userName: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -17,10 +18,13 @@ export class ComicDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.apiService.getComicDetails(id).subscribe(
-      comic => this.comic = comic,
-      error => console.error('Error fetching comic details:', error)
-    );
+    this.userName = localStorage.getItem('userName') || ''; // Recuperar desde localStorage
+    const comicId = this.route.snapshot.paramMap.get('id');
+    if (comicId) {
+      this.apiService.getComicDetails(Number(comicId)).subscribe(
+        (comic) => (this.comic = comic),
+        (error) => console.error('Error fetching comic details:', error)
+      );
+    }
   }
 }

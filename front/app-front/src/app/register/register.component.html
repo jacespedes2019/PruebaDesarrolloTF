@@ -16,11 +16,15 @@
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput formControlName="email" type="email">
+          <mat-error *ngIf="email?.hasError('required')">El email es obligatorio</mat-error>
+          <mat-error *ngIf="email?.hasError('email')">Email no válido</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Contraseña</mat-label>
           <input matInput formControlName="password" type="password">
+          <mat-error *ngIf="password?.hasError('required')">La contraseña es obligatoria</mat-error>
+          <mat-error *ngIf="password?.hasError('minlength')">La contraseña debe tener al menos 6 caracteres</mat-error>
         </mat-form-field>
 
         <div class="button-container">
@@ -31,4 +35,3 @@
     </mat-card-content>
   </mat-card>
 </div>
-
