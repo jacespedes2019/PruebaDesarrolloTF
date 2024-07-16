@@ -10,15 +10,21 @@ import { Favorite } from '../models/models';
 export class FavoritesComponent implements OnInit {
   favorites: Favorite[] = [];
   userName: string = '';
+  isLoading= true;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.isLoading = true; // Iniciar el símbolo de carga
     this.userName = localStorage.getItem('userName') || ''; // Recuperar desde localStorage
 
     this.apiService.getFavorites().subscribe(
-      favorites => this.favorites = favorites,
-      error => console.error('Error fetching favorites:', error)
+      favorites => {this.favorites = favorites
+        this.isLoading = false; // Iniciar el símbolo de carga
+      },
+      error => {console.error('Error fetching favorites:', error)
+        this.isLoading = false; // Iniciar el símbolo de carga
+      }
     );
   }
 

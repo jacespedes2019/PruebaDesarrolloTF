@@ -88,4 +88,11 @@
   .spacer {
     flex: 1 1 auto;
   }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la ventana */
+  }
   

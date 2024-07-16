@@ -36,9 +36,10 @@
   
     mat-card {
       width: 300px;
-      background-color: black; 
-      border-radius: 8px; /* Bordes redondeados */
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    background-color: black; 
+    border: 2px solid #f31010; /* Establece el borde con ancho, estilo y color */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px #0000001a; /* Sombra suave */
   
       mat-card-header {
         border-top-left-radius: 8px;
@@ -58,6 +59,7 @@
       }
   
       .mdc-card__media {
+        border: 2px solid #f31010; /* Establece el borde con ancho, estilo y color */
         width: 100%;
         height: 250px; /* Establecer una altura fija */
         object-fit: cover; /* Asegurarse de que la imagen se recorta y cubre completamente el área */
@@ -80,5 +82,12 @@
   
   .spacer {
     flex: 1 1 auto;
+  }
+
+  .loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Altura completa de la ventana */
   }
   

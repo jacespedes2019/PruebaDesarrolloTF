@@ -11,6 +11,7 @@ import { Comic } from '../models/models';
 export class ComicDetailComponent implements OnInit {
   comic: Comic | undefined;
   userName: string = '';
+  isLoading = true; // Iniciar el símbolo de carga
 
   constructor(
     private route: ActivatedRoute,
@@ -18,12 +19,17 @@ export class ComicDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.isLoading = true; // Iniciar el símbolo de carga
     this.userName = localStorage.getItem('userName') || ''; // Recuperar desde localStorage
     const comicId = this.route.snapshot.paramMap.get('id');
     if (comicId) {
       this.apiService.getComicDetails(Number(comicId)).subscribe(
-        (comic) => (this.comic = comic),
-        (error) => console.error('Error fetching comic details:', error)
+        (comic) => {(this.comic = comic)
+          this.isLoading = false; // Iniciar el símbolo de carga
+        },
+        (error) => {console.error('Error fetching comic details:', error)
+          this.isLoading = false; // Iniciar el símbolo de carga
+        }
       );
     }
   }

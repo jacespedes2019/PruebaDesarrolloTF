@@ -1,7 +1,9 @@
 <mat-toolbar class="comics-toolbar">
   <span>Detalles del Cómic</span>
   <span class="spacer"></span>
-  <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  <a [routerLink]="['/comics']" class="marvel-logo">
+    <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  </a>
   <span class="spacer"></span>
   <button mat-button class="button" [routerLink]="['/comics']">Volver a Comics</button>
   <button mat-button class= "button" [routerLink]="['/favorites']">Favoritos</button>
@@ -9,6 +11,10 @@
   <img src="https://cdn.marvel.com/content/1x/034wlv_com_crd_01.jpg" alt="User Logo" class="user-logo">
   <span>{{ userName }}</span>
 </mat-toolbar>
+
+<div *ngIf="isLoading" class="loading-container">
+  <mat-spinner></mat-spinner>
+</div>
 
 <div class="comic-detail">
   <mat-card *ngIf="comic">

@@ -1,7 +1,9 @@
 <mat-toolbar class="comics-toolbar">
   <span>Comics</span>
   <span class="spacer"></span>
-  <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  <a [routerLink]="['/comics']" class="marvel-logo">
+    <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  </a>
   <span class="spacer"></span>
   <button mat-button class="button" [routerLink]="['/favorites']">Favoritos</button>
   <button mat-button class="button" [routerLink]="['/login']">Salir</button>

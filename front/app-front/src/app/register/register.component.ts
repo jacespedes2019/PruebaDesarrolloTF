@@ -31,7 +31,7 @@ export class RegisterComponent {
       const newUser = new User(name, identification, email, password);
       this.apiService.register(newUser).subscribe(
         () => this.router.navigate(['/login']),
-        error => console.error('Error registering user:', error)
+        error => alert('Identificación o email ya existente')
       );
     }
   }
