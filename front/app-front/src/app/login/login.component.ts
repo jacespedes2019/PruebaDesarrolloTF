@@ -30,7 +30,7 @@ export class LoginComponent {
           localStorage.setItem('token', response.access_token);
           this.router.navigate(['/comics']);
         },
-        error => console.error('Error logging in:', error)
+        error => alert('Email o contraseña incorrectos')
       );
     }
   }
