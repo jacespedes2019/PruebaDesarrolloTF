@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable, tap } from 'rxjs';
 import { User, Comic, Favorite } from '../models/models';
 import { environment } from '../enviroment/enviroment';
@@ -42,7 +42,14 @@ export class ApiService {
   }
 
   getComics(page: number, limit: number): Observable<Comic[]> {
-    return this.http.get<Comic[]>(`${this.apiUrl}/comics`, { params: { page, limit } });
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('limit', limit.toString());
+    return this.http.get<Comic[]>(`${this.apiUrl}/comics`, { params });
+  }
+
+  getTotalComics(): Observable<{ total: number, total_pages: number }> {
+    return this.http.get<{ total: number, total_pages: number }>(`${this.apiUrl}/comics/total`);
   }
 
   getComicDetails(id: number): Observable<Comic> {

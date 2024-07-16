@@ -83,3 +83,53 @@ mat-toolbar {
 .spacer {
   flex: 1 1 auto;
 }
+
+.mat-paginator {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura completa de la ventana */
+}
+
+mat-paginator {
+  background-color: black; /* Fondo negro */
+  color: white; /* Color del texto */
+  display: flex;
+  justify-content: center;
+
+  .mat-paginator-range-label, .mat-paginator-page-size {
+    color: white; /* Color del texto */
+  }
+
+  .mat-icon-button {
+    color: white; /* Color de los botones */
+  }
+
+  .mat-select-value {
+    color: white; /* Color del texto en el selector */
+  }
+
+  .mat-select-arrow {
+    color: white; /* Color de la flecha del selector */
+  }
+}
+
+.custom-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black; /* Fondo negro */
+  color: white; /* Color del texto */
+
+  button {
+    background-color: black;
+    color: white;
+  }
+}
+
