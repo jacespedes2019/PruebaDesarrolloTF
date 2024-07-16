@@ -1,13 +1,22 @@
-<mat-toolbar color="primary">
+<mat-toolbar class="comics-toolbar">
   <span>Favoritos</span>
+  <span class="spacer"></span>
+  <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  <span class="spacer"></span>
+  <button mat-button class= "button" [routerLink]="['/comics']">Comics</button>
+  <img src="https://cdn.marvel.com/content/1x/034wlv_com_crd_01.jpg" alt="User Logo" class="user-logo">
+  <span>{{ userName }}</span>
 </mat-toolbar>
 
 <div class="favorites-list">
-  <mat-card *ngFor="let favorite of favorites">
-    <mat-card-header>
-      <mat-card-title>{{ favorite.title }}</mat-card-title>
+  <mat-card *ngFor="let favorite of favorites" class="comic-card">
+    <mat-card-header class="comic-card-header my-1">
+      <mat-card-title class="comic-card-title">{{ favorite.title }}</mat-card-title>
     </mat-card-header>
     <img mat-card-image [src]="favorite.image" alt="{{ favorite.title }}">
+    <mat-card-content>
+      <p>{{ favorite.description }}</p>
+    </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="removeFromFavorites(favorite.comic_id)">Eliminar de Favoritos</button>
       <button mat-button [routerLink]="['/comics', favorite.comic_id]">Ver Detalles</button>

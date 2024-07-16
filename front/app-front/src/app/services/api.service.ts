@@ -29,7 +29,16 @@ export class ApiService {
   }
 
   getProfile(): Observable<User> {
-    return this.http.get<User>(`${this.apiUrl}/users/me`);
+    return this.http.get<any>(`${this.apiUrl}/users/me`).pipe(
+      map(response => {
+        return new User(
+          response.nombre,
+          response.identificacion,
+          response.email,
+          response.password
+        );
+      })
+    );
   }
 
   getComics(page: number, limit: number): Observable<Comic[]> {

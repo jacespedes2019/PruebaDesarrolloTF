@@ -9,10 +9,13 @@ import { Favorite } from '../models/models';
 })
 export class FavoritesComponent implements OnInit {
   favorites: Favorite[] = [];
+  userName: string = '';
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.userName = localStorage.getItem('userName') || ''; // Recuperar desde localStorage
+
     this.apiService.getFavorites().subscribe(
       favorites => this.favorites = favorites,
       error => console.error('Error fetching favorites:', error)
