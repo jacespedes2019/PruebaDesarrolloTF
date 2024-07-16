@@ -1,4 +1,5 @@
 import requests
+from fastapi import HTTPException
 from app.security import verify_password
 from sqlalchemy.orm import Session
 from app.models import Usuario, Favorito
@@ -125,6 +126,12 @@ class ComicRepository:
 
     @staticmethod
     def add_comic_to_favorites(db: Session, favorite: dict):
+        existing_favorite = db.query(Favorito).filter(
+            Favorito.usuario_id == favorite['usuario_id'],
+            Favorito.comic_id == favorite['comic_id']
+        ).first()
+        if existing_favorite:
+            raise HTTPException(status_code=400, detail="Comic already in favorites")
         db_favorite = Favorito(**favorite)
         db.add(db_favorite)
         db.commit()

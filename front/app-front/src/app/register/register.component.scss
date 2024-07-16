@@ -1,0 +1,43 @@
+.register-background {
+  background-image: url('https://wallpaper.forfun.com/fetch/bd/bd6e614f6eb8400f6796910c366a7a66.jpeg'); /* Ruta a la imagen de fondo */
+  background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la ventana */
+  display: flex; /* Utiliza flexbox para centrar el contenido */
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+}
+
+.register-card {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: black; 
+    border: 2px solid #f31010; /* Establece el borde con ancho, estilo y color */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px #0000001a; /* Sombra suave */
+    color: white;
+  
+    mat-card-title {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+  
+      button {
+        width: 48%;
+      }
+    }
+  }
+  

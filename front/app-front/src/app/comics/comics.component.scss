@@ -1,0 +1,135 @@
+.comics-toolbar {
+  background-color: black; /* Fondo azul claro */
+  color: white; /* Color del texto */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  .marvel-logo {
+    height: 100px; /* Ajusta el tamaño del logo según sea necesario */
+    margin: 0 auto; /* Centrar el logo */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .user-logo {
+    margin-right: 10px;
+    height: 50px; /* Ajusta el tamaño del logo según sea necesario */
+    border-radius: 50%; /* Hacer la imagen redonda */
+    object-fit: cover; /* Asegurarse de que la imagen se recorta y cubre completamente el área */
+  }
+
+  .button {
+    margin-right: 10px;
+  }
+}
+
+.comics-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem;
+  color: white; /* Color del texto */
+
+  mat-card {
+    width: 300px;
+    background-color: black; 
+    border: 2px solid #f31010; /* Establece el borde con ancho, estilo y color */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 2px 4px #0000001a; /* Sombra suave */
+
+    mat-card-header {
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      margin-bottom: 5px;
+      min-height: 60px; /* Altura mínima para estandarizar */
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    mat-card-title {
+      font-size: 1.05rem;
+      text-align: center;
+      padding: 0.5rem; /* Padding adicional para títulos largos */
+    }
+
+    .mdc-card__media {
+      border: 2px solid #f31010; /* Establece el borde con ancho, estilo y color */
+      width: 100%;
+      height: 250px; /* Establecer una altura fija */
+      object-fit: cover; /* Asegurarse de que la imagen se recorta y cubre completamente el área */
+    }
+
+    mat-card-actions {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1rem 1rem;
+    }
+  }
+}
+
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-paginator {
+  margin: 2rem 0;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Altura completa de la ventana */
+}
+
+mat-paginator {
+  background-color: black; /* Fondo negro */
+  color: white; /* Color del texto */
+  display: flex;
+  justify-content: center;
+
+  .mat-paginator-range-label, .mat-paginator-page-size {
+    color: white; /* Color del texto */
+  }
+
+  .mat-icon-button {
+    color: white; /* Color de los botones */
+  }
+
+  .mat-select-value {
+    color: white; /* Color del texto en el selector */
+  }
+
+  .mat-select-arrow {
+    color: white; /* Color de la flecha del selector */
+  }
+}
+
+.custom-paginator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black; /* Fondo negro */
+  color: white; /* Color del texto */
+
+  button {
+    background-color: black;
+    color: white;
+  }
+}
+

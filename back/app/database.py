@@ -5,7 +5,7 @@ Base = declarative_base()
 engine= "Hola"
 SessionLocal="Hola"
 # Configuración de la base de datos
-DATABASE_URL = "postgresql://postgres:contrasena@localhost:5432/PruebaDesarrolloTF"
+DATABASE_URL = "postgresql://youruser:yourpassword@db/yourdb"
 try:
         engine = create_engine(DATABASE_URL)
         SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)

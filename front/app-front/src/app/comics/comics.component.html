@@ -1,0 +1,46 @@
+<mat-toolbar class="comics-toolbar">
+  <span>Comics</span>
+  <span class="spacer"></span>
+  <a [routerLink]="['/comics']" class="marvel-logo">
+    <img src="https://cdn.freebiesupply.com/logos/thumbs/2x/marvel-logo.png" alt="Marvel Logo" class="marvel-logo">
+  </a>
+  <span class="spacer"></span>
+  <button mat-button class="button" [routerLink]="['/favorites']">Favoritos</button>
+  <button mat-button class="button" [routerLink]="['/login']">Salir</button>
+  <img src="https://cdn.marvel.com/content/1x/034wlv_com_crd_01.jpg" alt="User Logo" class="user-logo">
+  <span>{{ userName }}</span>
+</mat-toolbar>
+
+<div *ngIf="isLoading" class="loading-container">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div *ngIf="!isLoading" class="comics-list">
+  <mat-card *ngFor="let comic of comics" class="comic-card">
+    <mat-card-header class="comic-card-header my-1">
+      <mat-card-title class="comic-card-title">{{ comic.title }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image [src]="comic.image" alt="{{ comic.title }}">
+    <mat-card-content>
+      <p>{{ comic.description }}</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="addToFavorites(comic)">Añadir a Favoritos</button>
+      <button mat-button [routerLink]="['/comics', comic.id]">Ver Detalles</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div class="custom-paginator">
+  <button mat-icon-button (click)="goToFirstPage()" aria-label="First page">
+    <mat-icon>first_page</mat-icon>
+  </button>
+  <mat-paginator [length]="totalComics"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="[5, 10, 15, 20]"
+                 (page)="onPageChange($event)">
+  </mat-paginator>
+  <button mat-icon-button (click)="goToLastPage()" aria-label="Last page">
+    <mat-icon>last_page</mat-icon>
+  </button>
+</div>
