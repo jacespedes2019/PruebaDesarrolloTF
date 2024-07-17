@@ -6,4 +6,4 @@ Para la documentación y arquitectura dirigirse al "Documentacion pagina web.pdf
 
 Jairo Adolfo Céspedes Plata
 
-18/07/2024
+16/07/2024
