@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'comics', component: ComicsComponent, canActivate: [AuthGuard] },
   { path: 'comics/:id', component: ComicDetailComponent, canActivate: [AuthGuard] },
   { path: 'favorites', component: FavoritesComponent, canActivate: [AuthGuard] },
-  { path: '', redirectTo: '/comics', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' }
 ];
 
 @NgModule({
